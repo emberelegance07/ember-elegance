@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Ember &amp; Elegance — Architectural Weddings</title>
+  <meta name="description" content="Ember &amp; Elegance — Architectural weddings & bespoke event architecture. Sculptural ceremonies, couture floral installations and cinematic production." />
+  <!-- Fonts (works fine on GitHub Pages) -->
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Lora:wght@300;400;600&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Structured data (replace domain/logo if you want) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Ember & Elegance",
+    "url": "https://emberandeleganceevents.com",
+    "logo": "https://emberandeleganceevents.com/path-to-logo.png",
+    "telephone": "+91 9398487423",
+    "sameAs": [
+      "https://www.instagram.com/emberandelegance",
+      "https://www.facebook.com/emberandelegance"
+    ]
+  }
+  </script>
+
+  <style>
+    /* --------- Root / Colors / Typography --------- */
+    :root{
+      --maroon-900: #2b0708;
+      --maroon-800: #3a0b0c;
+      --maroon-700: #4b1414;
+      --gold-1: #FFD166;
+      --gold-2: #C28E52;
+      --text: #fff6ee;
+      --muted: #e8ddd4;
+      --muted-2: #d9cfc6;
+      --max-width: 1400px;
+      --card-radius: 12px;
+      --transition: 300ms cubic-bezier(.2,.9,.2,1);
+    }
+
+    *{box-sizing:border-box}
+    body{margin:0;font-family:"Lora", serif;color:var(--text);background:linear-gradient(180deg,var(--maroon-900),var(--maroon-700));-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
+    h1,h2,h3,h4{font-family:"Cormorant Garamond",serif;color:var(--text);margin:0;}
+    .brand h1{font-family:"Playfair Display",serif;color:var(--gold-2);font-weight:600;margin:0;}
+    p,a,li,span{font-family:"Lora",serif;color:var(--muted);}
+
+    .site{max-width:var(--max-width);margin:0 auto;padding:0 28px 80px;}
+
+    /* Header */
+    header{display:flex;align-items:center;justify-content:space-between;padding:22px 8px 8px;}
+    .brand{display:flex;align-items:center;gap:14px;}
+    .logo-crest{width:54px;height:54px;border-radius:10px;background:linear-gradient(135deg, rgba(194,142,82,0.12), rgba(183,110,121,0.06));display:flex;align-items:center;justify-content:center;font-family:"Playfair Display",serif;color:var(--gold-2);font-weight:700;}
+    nav{display:flex;gap:18px;align-items:center}
+    nav a{color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;padding:8px 10px;border-radius:6px}
+    nav a:hover{color:var(--text)}
+    .nav-cta{background:linear-gradient(90deg,var(--gold-1),var(--gold-2));color:#32180f;padding:8px 14px;border-radius:10px;font-weight:700;text-decoration:none;box-shadow:0 12px 40px rgba(194,142,82,0.12);}
+
+    /* Hero */
+    .hero-wrap{position:relative;overflow:hidden;min-height:70vh;border-bottom:1px solid rgba(255,255,255,0.03);box-shadow:0 20px 60px rgba(0,0,0,0.45)}
+    .hero-bg{background-size:cover;background-position:center center;min-height:70vh;display:flex;align-items:center;justify-content:center;animation:slowZoom 28s linear infinite;position:relative;}
+    @keyframes slowZoom{0%{transform:scale(1)}50%{transform:scale(1.03)}100%{transform:scale(1)}}
+    .hero-bg::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(25,10,10,0.66),rgba(25,8,8,0.66));}
+    .hero-bg::after{content:'';position:absolute;inset:22px;pointer-events:none;border-radius:6px;border:1px solid rgba(194,142,82,0.06);box-shadow:inset 0 0 140px rgba(194,142,82,0.05);}
+    .hero-contents{position:relative;z-index:10;text-align:center;max-width:920px;padding:24px;}
+    .eyebrow{font-family:"Cormorant Garamond",serif;color:var(--gold-1);font-size:16px;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;font-weight:800;text-shadow:0 2px 8px rgba(0,0,0,0.4);}
+    .hero-title{font-size:48px;line-height:1.02;color:var(--text);margin:0 0 18px;text-shadow:0 18px 40px rgba(0,0,0,0.6);}
+    .hero-title .accent{background:linear-gradient(90deg,var(--gold-1),var(--gold-2));-webkit-background-clip:text;background-clip:text;color:transparent;}
+    .hero-copy{font-size:18px;color:var(--muted-2);margin-bottom:20px;max-width:860px;margin-left:auto;margin-right:auto;}
+
+    /* Portfolio */
+    .portfolio-wrap{padding:36px 0 12px}
+    .portfolio{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:10px;align-items:stretch}
+    .tile{position:relative;border-radius:var(--card-radius);overflow:hidden;box-shadow:0 18px 46px rgba(0,0,0,0.45);background:linear-gradient(180deg, rgba(40,8,8,0.04), rgba(20,6,6,0.02));cursor:pointer;transition:transform var(--transition),box-shadow var(--transition)}
+    .tile img{width:100%;height:100%;object-fit:cover;display:block;min-height:260px;transition:transform var(--transition)}
+    .tile .caption{position:absolute;left:0;right:0;bottom:0;padding:18px 16px;background:linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.45) 45%, rgba(0,0,0,0.72) 100%);color:var(--muted-2);font-size:14px}
+    .tile:hover{transform:translateY(-6px);box-shadow:0 30px 80px rgba(0,0,0,0.6)}
+    .tile:hover img{transform:scale(1.06)}
+
+    /* Reviews */
+    .reviews-wrap{padding:48px 0 36px}
+    .section-title{font-family:"Cormorant Garamond",serif;font-size:32px;color:var(--gold-1);text-align:center;margin-bottom:36px}
+    .reviews-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:24px}
+    .review-card{background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));padding:28px;border-radius:12px;border:1px solid rgba(255,255,255,0.04);box-shadow:0 12px 40px rgba(0,0,0,0.3)}
+    .stars{color:var(--gold-1);font-size:18px;margin-bottom:16px}
+    .review-text{font-size:16px;color:var(--muted-2);line-height:1.6;margin-bottom:20px;font-style:italic}
+
+    /* Team */
+    .team-wrap{padding:48px 0 36px}
+    .team-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+    .team-image{position:relative;border-radius:12px;overflow:hidden;box-shadow:0 15px 40px rgba(0,0,0,0.4);transition:transform var(--transition)}
+    .team-image img{width:100%;height:240px;object-fit:cover;display:block;transition:transform var(--transition)}
+    .team-caption{position:absolute;bottom:0;left:0;right:0;padding:20px;background:linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.7) 100%)}
+
+    /* FAQ */
+    .faq-wrap{padding:48px 0 36px}
+    .faq-list{max-width:800px;margin:0 auto}
+    .faq-item{margin-bottom:16px;border:1px solid rgba(255,255,255,0.06);border-radius:12px;overflow:hidden;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01))}
+    .faq-question{width:100%;padding:20px 24px;background:transparent;border:none;color:var(--gold-1);font-family:"Cormorant Garamond",serif;font-size:18px;font-weight:600;text-align:left;cursor:pointer;display:flex;justify-content:space-between;align-items:center;transition:all 0.3s ease}
+    .faq-question::after{content:'+';font-size:24px;transition:transform 0.3s ease}
+    .faq-question[aria-expanded="true"]::after{transform:rotate(45deg)}
+    .faq-answer{max-height:0;overflow:hidden;transition:max-height 0.3s ease}
+    .faq-answer.open{max-height:200px;padding-bottom:16px}
+    .faq-answer p{padding:0 24px 20px;margin:0;color:var(--muted-2);line-height:1.6}
+
+    /* Lightbox */
+    .lightbox{display:none;position:fixed;inset:0;background:rgba(6,6,6,0.95);z-index:2000;align-items:center;justify-content:center;padding:24px}
+    .lightbox.open{display:flex}
+    .lightbox img{max-width:92%;max-height:86%;border-radius:10px;box-shadow:0 30px 90px rgba(0,0,0,0.8)}
+    .lightbox .close{position:absolute;right:22px;top:18px;background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted);padding:10px;border-radius:8px;cursor:pointer}
+
+    /* Contact + footer */
+    .divider{height:1px;background:linear-gradient(90deg,transparent,var(--gold-2),transparent);margin:44px 0 22px;opacity:0.95}
+    .contact{background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);padding:28px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);display:flex;align-items:center;justify-content:space-between;gap:20px;box-shadow:0 18px 50px rgba(0,0,0,0.35)}
+    .btn-gold{background:linear-gradient(90deg,var(--gold-1),var(--gold-2));color:#2b1f18;padding:10px 14px;border-radius:10px;text-decoration:none;font-weight:700;box-shadow:0 12px 40px rgba(194,142,82,0.12)}
+    .btn-outline{border:1.6px solid rgba(255,209,102,0.12);color:var(--gold-1);padding:10px 14px;border-radius:10px;text-decoration:none;font-weight:700;background:transparent}
+
+    footer{margin-top:28px;padding:18px 8px;text-align:center;color:var(--muted-2)}
+
+    /* Logo intro */
+    .logo-intro{position:fixed;inset:0;background:var(--maroon-900);z-index:9999;display:flex;align-items:center;justify-content:center;animation:fadeOut 1s ease-in-out 4.5s forwards}
+    .logo-circle{width:200px;height:200px;border:2px solid var(--gold-1);border-radius:50%;display:flex;align-items:center;justify-content:center;transform:scale(0);animation:circleGrow 1.5s cubic-bezier(.2,.9,.2,1) 0.5s forwards}
+    .logo-circle::before{content:'';position:absolute;inset:8px;border:1px solid var(--gold-2);border-radius:50%;opacity:0.7;transform:scale(0);animation:innerCircleGrow 1.5s cubic-bezier(.2,.9,.2,1) 0.8s forwards}
+    .monogram{font-family:"Playfair Display",serif;font-size:48px;color:var(--gold-1);font-weight:400;letter-spacing:4px;opacity:0;animation:fadeInMonogram 1s ease-out 1.8s forwards;text-shadow:0 2px 8px rgba(0,0,0,0.3)}
+    .brand-name{font-family:"Playfair Display",serif;font-size:28px;color:var(--gold-2);font-weight:400;margin-bottom:12px;opacity:0;animation:fadeInUp 1s ease-out 2.8s forwards;letter-spacing:2px}
+    .tagline{font-family:"Cormorant Garamond",serif;font-size:16px;color:var(--muted);letter-spacing:3px;text-transform:uppercase;opacity:0;animation:fadeInUp 1s ease-out 3.5s forwards}
+    .site{opacity:0;animation:fadeIn 1s ease-out 5s forwards}
+
+    @keyframes circleGrow{0%{transform:scale(0)}100%{transform:scale(1)}}
+    @keyframes innerCircleGrow{0%{transform:scale(0)}100%{transform:scale(1)}}
+    @keyframes fadeInMonogram{0%{opacity:0;transform:scale(.8)}100%{opacity:1;transform:scale(1)}}
+    @keyframes fadeInUp{0%{opacity:0;transform:translateY(20px)}100%{opacity:1;transform:translateY(0)}}
+    @keyframes fadeOut{0%{opacity:1}100%{opacity:0;visibility:hidden}}
+    @keyframes fadeIn{0%{opacity:0}100%{opacity:1}}
+
+    /* Responsive */
+    @media(max-width:1100px){.portfolio{grid-template-columns:repeat(2,1fr)}.hero-title{font-size:44px}.contact{flex-direction:column;align-items:flex-start}.team-grid{grid-template-columns:repeat(2,1fr)}.logo-circle{width:160px;height:160px}.monogram{font-size:36px}.brand-name{font-size:22px}}
+    @media(max-width:560px){nav{display:none}.hero-title{font-size:30px}.portfolio{grid-template-columns:1fr}.hero-copy{font-size:15px}.team-grid{grid-template-columns:1fr}.reviews-grid{grid-template-columns:1fr}.logo-circle{width:120px;height:120px}.monogram{font-size:28px}.brand-name{font-size:18px}}
+  </style>
+</head>
+<body>
+  <!-- Logo intro -->
+  <div id="logo-intro" class="logo-intro" aria-hidden="false">
+    <div class="logo-reveal">
+      <div class="logo-circle"><div class="monogram">E&amp;E</div></div>
+      <div class="brand-name">Ember &amp; Elegance</div>
+      <div class="tagline">Architectural Weddings</div>
+    </div>
+  </div>
+
+  <!-- Main site -->
+  <div class="site" id="main-site" role="main" aria-labelledby="brand-heading">
+    <header>
+      <div class="brand" aria-hidden="true">
+        <div class="logo-crest">E&amp;E</div>
+        <h1 id="brand-heading">Ember &amp; Elegance</h1>
+      </div>
+      <nav aria-label="Primary navigation">
+        <a href="#about">About</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#contact" class="nav-cta">Enquire</a>
+      </nav>
+    </header>
+
+    <!-- Hero -->
+    <div class="hero-wrap" role="region" aria-label="Hero">
+      <div class="hero-bg" style="background-image:url('https://images.unsplash.com/photo-1503264116251-35a269479413?q=80&w=2000&auto=format&fit=crop');">
+        <div class="hero-contents" role="banner" aria-label="Main hero content">
+          <div class="eyebrow">Architectural • Bespoke • Singular</div>
+          <h1 class="hero-title">Architectural Weddings<br><span class="accent">Where Art Meets Structure</span></h1>
+          <p class="hero-copy">We transform raw sites into temporary monuments — sculptural wedding architecture, couture floral works and cinematic production for a single unforgettable day.</p>
+          <div class="buttons"><a class="nav-cta" href="#portfolio">View Our Creations</a></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Portfolio -->
+    <section id="portfolio" class="portfolio-wrap" aria-labelledby="portfolio-heading">
+      <h2 id="portfolio-heading" style="display:none">Portfolio</h2>
+      <div class="portfolio" role="list" aria-live="polite">
+        <div class="tile" role="listitem" tabindex="0" data-full="https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=2400&auto=format&fit=crop" data-title="Waterfront Elegance — Udaipur" data-desc="Cascading florals, reflective water and soft golden light — an evening ceremony composed for cinematic moments.">
+          <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=1200&auto=format&fit=crop" alt="Waterfront ceremonial installation">
+          <div class="caption">
+            <h4>Waterfront Elegance — Udaipur</h4>
+            <p>Cascading florals, reflective water and soft golden light.</p>
+          </div>
+        </div>
+
+        <div class="tile" role="listitem" tabindex="0" data-full="https://images.unsplash.com/photo-1606216794074-735e91aa2c92?q=80&w=2400&auto=format&fit=crop" data-title="Villa Nocturne — Moonlit Ceremony" data-desc="Suspended florals and sculptural aisle design convert a hilltop into an intimate palace of light.">
+          <img src="https://images.unsplash.com/photo-1606216794074-735e91aa2c92?q=80&w=1200&auto=format&fit=crop" alt="Sculptural aisle & suspended florals">
+          <div class="caption">
+            <h4>Villa Nocturne — Moonlit Ceremony</h4>
+            <p>Suspended florals and sculptural aisle design.</p>
+          </div>
+        </div>
+
+        <div class="tile" role="listitem" tabindex="0" data-full="https://images.unsplash.com/photo-1465495976277-4387d4b0e4a6?q=80&w=2400&auto=format&fit=crop" data-title="Palatial Stage — Heritage" data-desc="Regal staging with chandeliers and couture drapery — engineered for scale and intimacy.">
+          <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0e4a6?q=80&w=1200&auto=format&fit=crop" alt="Luxury ceremonial stage">
+          <div class="caption">
+            <h4>Palatial Stage — Heritage</h4>
+            <p>Regal staging with chandeliers and couture drapery.</p>
+          </div>
+        </div>
+
+        <div class="tile" role="listitem" tabindex="0" data-full="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=2400&auto=format&fit=crop" data-title="Detail Craftsmanship" data-desc="Every element designed for perfection.">
+          <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=1200&auto=format&fit=crop" alt="Hands working on detailed craftsmanship">
+          <div class="caption">
+            <h4>Detail Craftsmanship</h4>
+            <p>Every element designed for perfection.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Reviews -->
+    <section id="reviews" class="reviews-wrap" aria-labelledby="reviews-heading">
+      <h2 id="reviews-heading" class="section-title">What Our Clients Say</h2>
+      <div class="reviews-grid">
+        <div class="review-card">
+          <div class="stars">★★★★★</div>
+          <p class="review-text">"Ember &amp; Elegance transformed our raw venue into a breathtaking architectural masterpiece. Every detail was sculptural perfection."</p>
+          <div class="review-author"><strong>Priya &amp; Arjun</strong><span style="display:block;color:var(--muted-2)">Udaipur Palace Wedding</span></div>
+        </div>
+        <div class="review-card">
+          <div class="stars">★★★★★</div>
+          <p class="review-text">"Not just wedding planners — true artists. They created temporary monuments that will live in our memories forever."</p>
+          <div class="review-author"><strong>Kavya &amp; Rohan</strong><span style="display:block;color:var(--muted-2)">Jaipur Heritage Ceremony</span></div>
+        </div>
+        <div class="review-card">
+          <div class="stars">★★★★★</div>
+          <p class="review-text">"The attention to architectural detail and floral couture was extraordinary. Our guests are still talking about it months later."</p>
+          <div class="review-author"><strong>Ananya &amp; Vikram</strong><span style="display:block;color:var(--muted-2)">Mumbai Waterfront Wedding</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Team -->
+    <section id="team" class="team-wrap" aria-labelledby="team-heading">
+      <h2 id="team-heading" class="section-title">Meet Our Hyderabad-Based Team</h2>
+      <div style="text-align:center;margin-bottom:48px;max-width:600px;margin-left:auto;margin-right:auto;">
+        <div style="width:120px;height:120px;border-radius:50%;background:linear-gradient(135deg,var(--gold-1),var(--gold-2));margin:0 auto 20px;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:36px;color:var(--maroon-900);font-weight:600;box-shadow:0 15px 40px rgba(194,142,82,0.2);">LL</div>
+        <h3 style="font-family:'Cormorant Garamond',serif;font-size:28px;color:var(--gold-1);margin-bottom:8px;">Leena Luiis</h3>
+        <p style="color:var(--gold-2);font-size:16px;font-weight:600;margin-bottom:16px;">Founder &amp; Creative Director</p>
+        <p style="color:var(--muted-2);line-height:1.6;font-style:italic;">"Every wedding is a temporary monument to love. We don't just decorate spaces — we architect emotions, sculpt memories, and create experiences that transcend the ordinary."</p>
+        <p style="color:var(--muted);font-size:14px;margin-top:16px;">📍 Based in Hyderabad, Creating Worldwide</p>
+      </div>
+
+      <div class="team-grid">
+        <div class="team-image"><img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?q=80&w=2400&auto=format&fit=crop" alt="Hands arranging floral installations"><div class="team-caption"><h4>Floral Architecture</h4><p>Master artisans sculpting couture installations</p></div></div>
+        <div class="team-image"><img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=2400&auto=format&fit=crop" alt="Team setting up ceremonial structures"><div class="team-caption"><h4>Structural Design</h4><p>Precision engineering for temporary monuments</p></div></div>
+        <div class="team-image"><img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=2400&auto=format&fit=crop" alt="Lighting specialists at work"><div class="team-caption"><h4>Cinematic Lighting</h4><p>Creating atmosphere through architectural illumination</p></div></div>
+        <div class="team-image"><img src="https://images.unsplash.com/photo-1589939705384-5185137a7f0f?q=80&w=2400&auto=format&fit=crop" alt="Hands working on detailed craftsmanship"><div class="team-caption"><h4>Detail Craftsmanship</h4><p>Every element designed for perfection</p></div></div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="faq-wrap" aria-labelledby="faq-heading">
+      <h2 id="faq-heading" class="section-title">Frequently Asked Questions</h2>
+      <div class="faq-list">
+        <div class="faq-item"><button class="faq-question" aria-expanded="false">What makes your approach "architectural"?</button><div class="faq-answer"><p>We design weddings as temporary monuments, creating sculptural installations and structural elements that transform spaces into architectural masterpieces for your celebration.</p></div></div>
+        <div class="faq-item"><button class="faq-question" aria-expanded="false">Do you work internationally?</button><div class="faq-answer"><p>Yes, we create architectural weddings worldwide. Our team travels globally to design and execute bespoke celebrations in any location that inspires your vision.</p></div></div>
+        <div class="faq-item"><button class="faq-question" aria-expanded="false">What's included in your services?</button><div class="faq-answer"><p>Complete architectural wedding design including structural installations, couture floral architecture, cinematic lighting, custom fabrication, and full event production management.</p></div></div>
+        <div class="faq-item"><button class="faq-question" aria-expanded="false">How far in advance should we book?</button><div class="faq-answer"><p>We recommend booking 12-18 months in advance for architectural weddings, as our bespoke installations require extensive design, fabrication, and coordination time.</p></div></div>
+        <div class="faq-item"><button class="faq-question" aria-expanded="false">What's your design process like?</button><div class="faq-answer"><p>We begin with an architectural consultation, create detailed 3D renderings, develop custom fabrication plans, and provide full project management from concept to celebration day.</p></div></div>
+      </div>
+    </section>
+
+    <div class="divider" aria-hidden="true"></div>
+
+    <!-- Contact -->
+    <section id="contact" class="contact" role="region" aria-labelledby="contact-heading">
+      <div class="left">
+        <h3 id="contact-heading">Get in Touch</h3>
+        <p>Available worldwide • By appointment only. For an initial conversation, choose either WhatsApp or email — we will follow up with next steps.</p>
+      </div>
+      <div class="actions">
+        <a class="btn-gold" href="https://wa.me/919398487423" target="_blank" rel="noopener">💬 Chat on WhatsApp</a>
+        <a class="btn-outline" href="mailto:info@emberandeleganceevents.com">✉️ Send an Email</a>
+      </div>
+    </section>
+
+    <footer>
+      <div style="max-width:900px;margin:18px auto;color:var(--muted-2);font-size:14px;text-align:center">"We are not decorators. We are architects of moments — sculpting weddings as masterpieces of space, light and memory."</div>
+      <div style="text-align:center;color:var(--muted-2);font-size:13px;margin-bottom:8px"><a href="https://emberandeleganceevents.com" target="_blank" rel="noopener" style="color:var(--gold-2);text-decoration:none">emberandeleganceevents.com</a> • <a href="mailto:info@emberandeleganceevents.com" style="color:var(--gold-2);text-decoration:none">info@emberandeleganceevents.com</a></div>
+      <div style="text-align:center;color:var(--muted-2);font-size:13px">© Ember &amp; Elegance — Architectural Weddings. All rights reserved.</div>
+    </footer>
+  </div>
+
+  <!-- Lightbox element (created by JS if missing) -->
+  <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-hidden="true" style="display:none;"></div>
+
+  <!-- Inline JS: lightbox, faq, smooth scroll, accessibility -->
+  <script>
+  (function(){
+    // Helper to create lightbox if missing
+    function ensureLightbox(){
+      var lb = document.getElementById('lightbox');
+      if(!lb){
+        lb = document.createElement('div');
+        lb.id = 'lightbox';
+        lb.className = 'lightbox';
+        lb.setAttribute('role','dialog');
+        lb.setAttribute('aria-modal','true');
+        document.body.appendChild(lb);
+      }
+      lb.innerHTML = '<div style="max-width:92%;max-height:86%;text-align:center;"><img id="lb-img" src="" alt="" style="max-width:92%;max-height:86%;border-radius:10px;box-shadow:0 30px 90px rgba(0,0,0,0.8)"><div id="lb-desc" style="color:var(--muted-2);margin-top:12px;"></div></div><button id="lb-close" style="position:absolute;right:22px;top:18px;background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted);padding:10px;border-radius:8px;cursor:pointer;">✕</button>';
+      return lb;
+    }
+
+    var tiles = document.querySelectorAll('.tile');
+    var lightbox = ensureLightbox();
+    var lbImg = document.getElementById('lb-img');
+    var lbDesc = document.getElementById('lb-desc');
+    var lbClose = document.getElementById('lb-close');
+
+    function openLightbox(src, title, desc){
+      lbImg.src = src || '';
+      lbImg.alt = title || '';
+      lbDesc.textContent = title ? (title + (desc ? ' — ' + desc : '')) : (desc || '');
+      lightbox.classList.add('open');
+      lightbox.style.display = 'flex';
+      lightbox.setAttribute('aria-hidden','false');
+      document.body.style.overflow = 'hidden';
+      if(lbClose) lbClose.focus();
+    }
+    function closeLightbox(){
+      lightbox.classList.remove('open');
+      lightbox.style.display = 'none';
+      lightbox.setAttribute('aria-hidden','true');
+      document.body.style.overflow = '';
+      if(lbImg) lbImg.src = '';
+    }
+
+    tiles.forEach(function(tile){
+      tile.addEventListener('click', function(){ openLightbox(tile.dataset.full, tile.dataset.title, tile.dataset.desc); });
+      tile.addEventListener('keydown', function(e){ if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openLightbox(tile.dataset.full, tile.dataset.title, tile.dataset.desc); }});
+    });
+
+    if(lbClose) lbClose.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', function(e){ if(e.target === lightbox) closeLightbox(); });
+    document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeLightbox(); });
+
+    // FAQ toggles
+    document.querySelectorAll('.faq-question').forEach(function(question){
+      question.addEventListener('click', function(){
+        var isExpanded = question.getAttribute('aria-expanded') === 'true';
+        // close others
+        document.querySelectorAll('.faq-question').forEach(function(q){
+          if(q !== question){ q.setAttribute('aria-expanded','false'); if(q.nextElementSibling) q.nextElementSibling.classList.remove('open'); }
+        });
+        question.setAttribute('aria-expanded', !isExpanded);
+        var answer = question.nextElementSibling;
+        if(answer) answer.classList.toggle('open', !isExpanded);
+      });
+    });
+
+    // Smooth scroll for in-page anchors
+    document.querySelectorAll('a[href^="#"]').forEach(function(a){
+      a.addEventListener('click', function(e){
+        var href = this.getAttribute('href');
+        if(href.startsWith('#')){
+          e.preventDefault();
+          var el = document.querySelector(href);
+          if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
+        }
+      });
+    });
+
+    // Auto-hide logo intro after animation (safety fallback)
+    setTimeout(function(){
+      var intro = document.getElementById('logo-intro');
+      if(intro){
+        try{ intro.style.display = 'none'; }catch(e){}
+      }
+      var main = document.getElementById('main-site');
+      if(main) main.style.opacity = 1;
+    }, 5200);
+
+  })();
+  </script>
+</body>
+</html>
